@@ -1,0 +1,50 @@
+{
+  "name": "tsdiapi-inforu",
+  "description": "A TSDIAPI plugin for sending SMS using the Inforu service.",
+  "keywords": [
+    "tsdiapi",
+    "inforu",
+    "sms",
+    "plugin",
+    "tsdiapi-plugin"
+  ],
+  "version": "1.0.0",
+  "main": "output/index.js",
+  "types": "output/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "author": {
+    "name": "Artyom Gorlovetskiy",
+    "url": "https://github.com/unbywyd",
+    "email": "unbywyd@gmail.com"
+  },
+  "engines": {
+    "node": ">=18.19.0"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.9"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.10",
+    "tsdiapi-server": "github:unbywyd/tsdiapi-server#master",
+    "typescript": "^5.7.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unbywyd/tsdiapi-inforu.git"
+  },
+  "bugs": {
+    "url": "https://github.com/unbywyd/tsdiapi-inforu/issues"
+  },
+  "homepage": "https://github.com/unbywyd/tsdiapi-inforu#readme",
+  "files": [
+    "output/",
+    "README.md",
+    "LICENSE"
+  ],
+  "peerDependencies": {
+    "winston": "^3.17.0"
+  }
+}
