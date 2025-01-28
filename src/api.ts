@@ -22,7 +22,7 @@ class InforuConfig {
             this.logger.error('Cannot send SMS without a recipient');
             return;
         }
-        if(!this.config.userame || !this.config.password || !this.config.senderName) {
+        if (!this.config.userame || !this.config.password || !this.config.senderName) {
             this.logger.error('Inforu plugin not configured properly. Missing username, password or sender name');
             return;
         }

@@ -1,7 +1,7 @@
 import { AppContext, AppPlugin } from "tsdiapi-server";
 import inforu from "./api";
 
-const SendSms = inforu.send;
+const SendSms = inforu.send.bind(inforu);
 export { SendSms };
 
 export type PluginOptions = {
@@ -15,12 +15,17 @@ class App implements AppPlugin {
     config: PluginOptions;
     context: AppContext;
     constructor(config?: PluginOptions) {
-        this.config = { ...config };
+        this.config = {
+            userame: '',
+            password: '',
+            senderName: '',
+            ...config || {},
+        };
     }
 
     async onInit(ctx: AppContext) {
         this.context = ctx;
-        const appConfig = this.context.config.appConfig || {};
+        const appConfig = this.context?.config?.appConfig || {};
 
         const username = this.config.userame || appConfig["INFORU_USERNAME"];
         const password = this.config.password || appConfig["INFORU_PASSWORD"];

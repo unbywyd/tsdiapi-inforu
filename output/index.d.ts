@@ -1,5 +1,5 @@
 import { AppContext, AppPlugin } from "tsdiapi-server";
-declare const SendSms: (to: string, text: string) => Promise<void>;
+declare const SendSms: any;
 export { SendSms };
 export type PluginOptions = {
     userame: string;
