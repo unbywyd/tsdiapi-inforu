@@ -83,7 +83,3 @@ This plugin is licensed under the MIT License.
 ## Issues and Contributions
 
 If you encounter any issues or have feature requests, feel free to open an issue or contribute to the repository.
-
-```
-
-```
