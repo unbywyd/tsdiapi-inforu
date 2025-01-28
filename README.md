@@ -1,4 +1,3 @@
-````markdown
 # TSDIAPI-Inforu Plugin
 
 TSDIAPI-Inforu is a plugin for the TSDIAPI framework that provides seamless integration with the Inforu SMS service. It allows you to send SMS messages directly from your application with minimal configuration.
