@@ -19,9 +19,6 @@ Install the plugin via NPM:
 ```bash
 npm install tsdiapi-inforu
 ```
-````
-
----
 
 ## Usage
 
