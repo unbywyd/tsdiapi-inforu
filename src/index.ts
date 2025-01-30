@@ -1,4 +1,4 @@
-import { AppContext, AppPlugin } from "tsdiapi-server";
+import type { AppContext, AppPlugin } from "@tsdiapi/server";
 import inforu from "./api";
 
 const SendSms = inforu.send.bind(inforu);

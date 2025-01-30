@@ -1,14 +1,17 @@
 {
-  "name": "tsdiapi-inforu",
+  "name": "@tsdiapi/inforu",
   "description": "A TSDIAPI plugin for sending SMS using the Inforu service.",
+  "version": "0.0.1-alpha.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "tsdiapi",
     "inforu",
     "sms",
-    "plugin",
-    "tsdiapi-plugin"
+    "plugin"
   ],
-  "version": "1.0.0",
   "main": "output/index.js",
   "types": "output/index.d.ts",
   "scripts": {
@@ -28,7 +31,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.10",
-    "tsdiapi-server": "github:unbywyd/tsdiapi-server#master",
+    "@tsdiapi/server": "^0.0.1-alpha",
     "typescript": "^5.7.2"
   },
   "repository": {

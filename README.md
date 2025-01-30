@@ -17,7 +17,13 @@ TSDIAPI-Inforu is a plugin for the TSDIAPI framework that provides seamless inte
 Install the plugin via NPM:
 
 ```bash
-npm install tsdiapi-inforu
+npm install @tsdiapi/inforu
+```
+
+Or use the CLI to add the plugin:
+
+```bash
+tsdiapi add plugin inforu
 ```
 
 ## Usage
@@ -27,8 +33,8 @@ npm install tsdiapi-inforu
 Add the plugin to your TSDIAPI server configuration:
 
 ```typescript
-import { createApp } from "tsdiapi-server";
-import createPlugin from "tsdiapi-inforu";
+import { createApp } from "@tsdiapi/server";
+import createPlugin from "@tsdiapi/inforu";
 
 createApp({
   plugins: [
@@ -52,8 +58,8 @@ You can also configure the plugin using environment variables:
 If the ENV variables are set, you can initialize the plugin without passing the configuration:
 
 ```typescript
-import { createApp } from "tsdiapi-server";
-import createPlugin from "tsdiapi-inforu";
+import { createApp } from "@tsdiapi/server";
+import createPlugin from "@tsdiapi/inforu";
 
 createApp({
   plugins: [createPlugin()],
@@ -67,7 +73,7 @@ createApp({
 You can use the `SendSms` function to send SMS messages from anywhere in your application:
 
 ```typescript
-import { SendSms } from "tsdiapi-inforu";
+import { SendSms } from "@tsdiapi/inforu";
 
 await SendSms("+1234567890", "Hello, this is a test message!");
 ```
