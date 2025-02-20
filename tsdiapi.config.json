@@ -1,0 +1,41 @@
+{
+    "name": "@tsdiapi/inforu",
+    "description": "A TSDIAPI plugin for integrating Inforu SMS service, enabling message sending via Inforu API.",
+    "variables": [
+      {
+        "key": "INFORU_USERNAME",
+        "type": "string",
+        "default": "",
+        "configurable": true,
+        "description": "The username for Inforu API authentication.",
+        "inquirer": {
+          "message": "Enter your Inforu username:",
+          "required": true
+        }
+      },
+      {
+        "key": "INFORU_PASSWORD",
+        "type": "string",
+        "default": "",
+        "configurable": true,
+        "description": "The password for Inforu API authentication.",
+        "inquirer": {
+          "message": "Enter your Inforu password:",
+          "required": true,
+          "mask": "*"
+        }
+      },
+      {
+        "key": "INFORU_SENDER_NAME",
+        "type": "string",
+        "default": "",
+        "configurable": true,
+        "description": "The sender name to be used for Inforu SMS messages.",
+        "inquirer": {
+          "message": "Enter your Inforu sender name:",
+          "required": true
+        }
+      }
+    ]
+  }
+  

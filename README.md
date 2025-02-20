@@ -23,7 +23,7 @@ npm install @tsdiapi/inforu
 Or use the CLI to add the plugin:
 
 ```bash
-tsdiapi add plugin inforu
+tsdiapi plugins add inforu
 ```
 
 ## Usage
@@ -75,7 +75,7 @@ You can use the `SendSms` function to send SMS messages from anywhere in your ap
 ```typescript
 import { SendSms } from "@tsdiapi/inforu";
 
-await SendSms("+1234567890", "Hello, this is a test message!");
+await SendSms("+972...", "Hello, this is a test message!");
 ```
 
 ---

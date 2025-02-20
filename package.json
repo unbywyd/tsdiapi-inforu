@@ -1,7 +1,7 @@
 {
   "name": "@tsdiapi/inforu",
   "description": "A TSDIAPI plugin for sending SMS using the Inforu service.",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.2",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -45,7 +45,8 @@
   "files": [
     "output/",
     "README.md",
-    "LICENSE"
+    "LICENSE.md",
+    "tsdiapi.config.json"
   ],
   "peerDependencies": {
     "winston": "^3.17.0"
