@@ -3,7 +3,7 @@
     "description": "A TSDIAPI plugin for integrating Inforu SMS service, enabling message sending via Inforu API.",
     "variables": [
       {
-        "key": "INFORU_USERNAME",
+        "name": "INFORU_USERNAME",
         "type": "string",
         "default": "",
         "configurable": true,
@@ -14,7 +14,7 @@
         }
       },
       {
-        "key": "INFORU_PASSWORD",
+        "name": "INFORU_PASSWORD",
         "type": "string",
         "default": "",
         "configurable": true,
@@ -26,7 +26,7 @@
         }
       },
       {
-        "key": "INFORU_SENDER_NAME",
+        "name": "INFORU_SENDER_NAME",
         "type": "string",
         "default": "",
         "configurable": true,
