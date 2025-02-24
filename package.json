@@ -1,7 +1,7 @@
 {
   "name": "@tsdiapi/inforu",
   "description": "A TSDIAPI plugin for sending SMS using the Inforu service.",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.1-alpha.4",
   "private": false,
   "publishConfig": {
     "access": "public"

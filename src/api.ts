@@ -4,7 +4,7 @@ import type { Logger } from "winston";
 
 const endpoint = "https://uapi.inforu.co.il/SendMessageXml.ashx?InforuXML=";
 
-class InforuConfig {
+export class InforuProvider {
     private config: PluginOptions;
     private logger: Logger;
 
@@ -22,14 +22,14 @@ class InforuConfig {
             this.logger.error('Cannot send SMS without a recipient');
             return;
         }
-        if (!this.config.userame || !this.config.password || !this.config.senderName) {
+        if (!this.config.username || !this.config.password || !this.config.senderName) {
             this.logger.error('Inforu plugin not configured properly. Missing username, password or sender name');
             return;
         }
-        const { userame, password, senderName } = this.config;
+        const { username, password, senderName } = this.config;
         const xmlBody = `<Inforu>
             <User>
-                <Username>${userame}</Username>
+                <Username>${username}</Username>
                 <Password>${password}</Password>
             </User>
             <Content Type="sms">
@@ -62,6 +62,3 @@ class InforuConfig {
         }
     }
 }
-
-const inforu = new InforuConfig();
-export default inforu;

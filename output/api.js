@@ -3,9 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.InforuProvider = void 0;
 const axios_1 = __importDefault(require("axios"));
 const endpoint = "https://uapi.inforu.co.il/SendMessageXml.ashx?InforuXML=";
-class InforuConfig {
+class InforuProvider {
     config;
     logger;
     init(config, logger) {
@@ -21,14 +22,14 @@ class InforuConfig {
             this.logger.error('Cannot send SMS without a recipient');
             return;
         }
-        if (!this.config.userame || !this.config.password || !this.config.senderName) {
+        if (!this.config.username || !this.config.password || !this.config.senderName) {
             this.logger.error('Inforu plugin not configured properly. Missing username, password or sender name');
             return;
         }
-        const { userame, password, senderName } = this.config;
+        const { username, password, senderName } = this.config;
         const xmlBody = `<Inforu>
             <User>
-                <Username>${userame}</Username>
+                <Username>${username}</Username>
                 <Password>${password}</Password>
             </User>
             <Content Type="sms">
@@ -60,6 +61,5 @@ class InforuConfig {
         }
     }
 }
-const inforu = new InforuConfig();
-exports.default = inforu;
+exports.InforuProvider = InforuProvider;
 //# sourceMappingURL=api.js.map

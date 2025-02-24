@@ -1,36 +1,36 @@
-# TSDIAPI-Inforu Plugin
+# **TSDIAPI-Inforu Plugin**
 
-TSDIAPI-Inforu is a plugin for the TSDIAPI framework that provides seamless integration with the Inforu SMS service. It allows you to send SMS messages directly from your application with minimal configuration.
-
----
-
-## Features
-
-- **SMS Sending**: Easily send SMS messages using the Inforu service.
-- **Configuration via ENV**: Load credentials and sender details from environment variables or plugin configuration.
-- **Integrated Logging**: Logs success or failure of SMS sending using the TSDIAPI logging system.
+TSDIAPI-Inforu is a plugin for the **TSDIAPI framework** that enables seamless integration with the **Inforu SMS service**. It allows you to send SMS messages directly from your application with **minimal configuration**.
 
 ---
 
-## Installation
+## **Features**
+✅ **Send SMS Messages** – Easily send SMS using the **Inforu** service.  
+✅ **Environment-Based Configuration** – Load credentials via `.env` or directly in the plugin.  
+✅ **Global Provider Access** – Use the SMS provider **from anywhere** in your app.  
+✅ **Integrated Logging** – All actions are logged using **TSDIAPI’s logging system**.  
 
-Install the plugin via NPM:
+---
 
+## **Installation**
+
+### Install via NPM
 ```bash
 npm install @tsdiapi/inforu
 ```
 
-Or use the CLI to add the plugin:
-
+### Or Use the CLI
 ```bash
 tsdiapi plugins add inforu
 ```
 
-## Usage
+---
 
-### Register the Plugin
+## **Usage**
 
-Add the plugin to your TSDIAPI server configuration:
+### **Registering the Plugin in TSDIAPI**
+
+Add the plugin to your **TSDIAPI server** configuration:
 
 ```typescript
 import { createApp } from "@tsdiapi/server";
@@ -39,23 +39,26 @@ import createPlugin from "@tsdiapi/inforu";
 createApp({
   plugins: [
     createPlugin({
-      userame: "your-inforu-username", // Or INFORU_USERNAME in ENV
-      password: "your-inforu-password", // Or INFORU_PASSWORD in ENV
-      senderName: "your-sender-name", // Or INFORU_SENDER_NAME in ENV
+      username: "your-inforu-username", // Or use INFORU_USERNAME from ENV
+      password: "your-inforu-password", // Or use INFORU_PASSWORD from ENV
+      senderName: "your-sender-name",   // Or use INFORU_SENDER_NAME from ENV
     }),
   ],
 });
 ```
 
-### Alternative Configuration via ENV
+---
 
-You can also configure the plugin using environment variables:
+### **Alternative Configuration via ENV**
+Instead of passing options in the code, you can **configure the plugin using environment variables**:
 
-- `INFORU_USERNAME`: Your Inforu username.
-- `INFORU_PASSWORD`: Your Inforu password.
-- `INFORU_SENDER_NAME`: The sender name to be used in SMS.
+```env
+INFORU_USERNAME=your-inforu-username
+INFORU_PASSWORD=your-inforu-password
+INFORU_SENDER_NAME=your-sender-name
+```
 
-If the ENV variables are set, you can initialize the plugin without passing the configuration:
+If these ENV variables are set, you can **initialize the plugin without parameters**:
 
 ```typescript
 import { createApp } from "@tsdiapi/server";
@@ -68,24 +71,66 @@ createApp({
 
 ---
 
-## Sending SMS
+## **Sending SMS Messages**
 
-You can use the `SendSms` function to send SMS messages from anywhere in your application:
+After initialization, you can send SMS messages **from anywhere** in your application using the global provider.
+
+### **Option 1: Using `getInforuProvider()`**
+```typescript
+import { getInforuProvider } from "@tsdiapi/inforu";
+
+const inforu = getInforuProvider();
+await inforu.sendSms("+972123456789", "Hello, this is a test message!");
+```
+
+### **Option 2: Using the Direct Function**
+If a global provider is initialized, you can send SMS like this:
+```typescript
+import { getInforuProvider } from "@tsdiapi/inforu";
+
+await getInforuProvider().sendSms("+972123456789", "Hello from Inforu!");
+```
+
+> **Note:** Ensure that the plugin is registered before calling `getInforuProvider()`.
+
+---
+
+## **Standalone Usage (Without TSDIAPI)**
+
+You can also use the plugin **independently** as an ES module:
 
 ```typescript
-import { SendSms } from "@tsdiapi/inforu";
+import { InforuProvider } from "@tsdiapi/inforu";
+import { Logger } from "winston"; // Any logging system
 
-await SendSms("+972...", "Hello, this is a test message!");
+const provider = new InforuProvider();
+
+provider.init(
+  {
+    username: "your-username",
+    password: "your-password",
+    senderName: "your-sender-name",
+  },
+  console as unknown as Logger
+);
+
+await provider.sendSms("+972123456789", "Standalone SMS test");
 ```
 
 ---
 
-## License
-
-This plugin is licensed under the MIT License.
+## **Why Use TSDIAPI-Inforu?**
+✔ **Easy integration** with **Inforu SMS API**.  
+✔ **Supports both plugin-based and standalone usage**.  
+✔ **Global access** via `getInforuProvider()`.  
+✔ **Environment variable support** for better security.  
 
 ---
 
-## Issues and Contributions
+## **License**
+This plugin is licensed under the **MIT License**.
 
-If you encounter any issues or have feature requests, feel free to open an issue or contribute to the repository.
+---
+
+## **Issues and Contributions**
+If you encounter any issues or have feature requests, **feel free to open an issue** or contribute to the repository. 🚀
