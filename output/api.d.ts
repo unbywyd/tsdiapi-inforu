@@ -1,4 +1,4 @@
-import { PluginOptions } from ".";
+import { PluginOptions } from "./index.js";
 import type { Logger } from "winston";
 export declare class InforuProvider {
     private config;

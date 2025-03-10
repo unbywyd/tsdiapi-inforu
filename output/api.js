@@ -1,12 +1,6 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.InforuProvider = void 0;
-const axios_1 = __importDefault(require("axios"));
+import axios from "axios";
 const endpoint = "https://uapi.inforu.co.il/SendMessageXml.ashx?InforuXML=";
-class InforuProvider {
+export class InforuProvider {
     config;
     logger;
     init(config, logger) {
@@ -47,7 +41,7 @@ class InforuProvider {
             this.logger.info(`Sending SMS to ${to}...`);
             this.logger.debug(`Endpoint: ${endpointUrl}`);
             this.logger.debug(`Payload: ${xmlBody}`);
-            const response = await axios_1.default.post(endpointUrl);
+            const response = await axios.post(endpointUrl);
             if (response.status === 200) {
                 this.logger.info(`SMS sent successfully to number: ${to}`);
             }
@@ -61,5 +55,4 @@ class InforuProvider {
         }
     }
 }
-exports.InforuProvider = InforuProvider;
 //# sourceMappingURL=api.js.map

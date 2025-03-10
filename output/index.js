@@ -1,10 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.InforuProvider = void 0;
-exports.getInforuProvider = getInforuProvider;
-exports.default = createPlugin;
-const api_1 = require("./api");
-Object.defineProperty(exports, "InforuProvider", { enumerable: true, get: function () { return api_1.InforuProvider; } });
+import { InforuProvider } from "./api.js";
 let inforuProvider = null;
 class App {
     name = 'tsdiapi-inforu';
@@ -18,7 +12,7 @@ class App {
             senderName: '',
             ...config || {},
         };
-        this.provider = new api_1.InforuProvider();
+        this.provider = new InforuProvider();
     }
     async onInit(ctx) {
         if (inforuProvider) {
@@ -41,13 +35,14 @@ class App {
         ctx.logger.info("✅ Inforu plugin initialized successfully.");
     }
 }
-function getInforuProvider() {
+export function getInforuProvider() {
     if (!inforuProvider) {
         throw new Error("❌ Inforu plugin is not initialized. Use createPlugin() in your server context first.");
     }
     return inforuProvider;
 }
-function createPlugin(config) {
+export { InforuProvider };
+export default function createPlugin(config) {
     return new App(config);
 }
 //# sourceMappingURL=index.js.map

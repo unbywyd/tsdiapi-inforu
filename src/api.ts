@@ -1,5 +1,5 @@
 import axios from "axios";
-import { PluginOptions } from ".";
+import { PluginOptions } from "./index.js";
 import type { Logger } from "winston";
 
 const endpoint = "https://uapi.inforu.co.il/SendMessageXml.ashx?InforuXML=";

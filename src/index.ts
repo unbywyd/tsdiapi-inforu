@@ -1,5 +1,5 @@
 import type { AppContext, AppPlugin } from "@tsdiapi/server";
-import { InforuProvider } from "./api";
+import { InforuProvider } from "./api.js";
 
 let inforuProvider: InforuProvider | null = null;
 
