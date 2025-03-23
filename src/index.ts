@@ -1,7 +1,14 @@
 import type { AppContext, AppPlugin } from "@tsdiapi/server";
 import { InforuProvider } from "./api.js";
+import { FastifyInstance } from 'fastify';
 
 let inforuProvider: InforuProvider | null = null;
+
+declare module "fastify" {
+    interface FastifyInstance {
+        inforu: InforuProvider;
+    }
+}
 
 export type PluginOptions = {
     username: string;
@@ -26,30 +33,27 @@ class App implements AppPlugin {
 
     async onInit(ctx: AppContext) {
         if (inforuProvider) {
-            ctx.logger.warn("⚠ Inforu plugin is already initialized. Skipping re-initialization.");
+            ctx.fastify.log.warn("⚠ Inforu plugin is already initialized. Skipping re-initialization.");
             return;
         }
         this.context = ctx;
-        const appConfig = this.context?.config?.appConfig || {};
+        const config = ctx.projectConfig;
 
-        const username = this.config.username || appConfig["INFORU_USERNAME"];
-        const password = this.config.password || appConfig["INFORU_PASSWORD"];
-        const senderName = this.config.senderName || appConfig["INFORU_SENDER_NAME"];
-        this.config.username = username;
-        this.config.password = password;
-        this.config.senderName = senderName;
+        this.config.username = config.get("INFORU_USERNAME", this.config.username) as string;
+        this.config.password = config.get("INFORU_PASSWORD", this.config.password) as string;
+        this.config.senderName = config.get("INFORU_SENDER_NAME", this.config.senderName) as string;
 
         if (!this.config.username || !this.config.password || !this.config.senderName) {
-            ctx.logger.error('Inforu plugin not configured properly. Missing username, password or sender name');
+            ctx.fastify.log.error('Inforu plugin not configured properly. Missing username, password or sender name');
         }
 
-        this.provider.init(this.config, ctx.logger);
+        this.provider.init(this.config, ctx);
         inforuProvider = this.provider;
-        ctx.logger.info("✅ Inforu plugin initialized successfully.");
+        ctx.fastify.decorate('inforu', this.provider);
     }
 }
 
-export function getInforuProvider(): InforuProvider {
+export function useInforuProvider(): InforuProvider {
     if (!inforuProvider) {
         throw new Error("❌ Inforu plugin is not initialized. Use createPlugin() in your server context first.");
     }

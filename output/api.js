@@ -3,9 +3,9 @@ const endpoint = "https://uapi.inforu.co.il/SendMessageXml.ashx?InforuXML=";
 export class InforuProvider {
     config;
     logger;
-    init(config, logger) {
+    init(config, app) {
         this.config = config;
-        this.logger = logger;
+        this.logger = app.fastify.log;
     }
     async send(to, text) {
         if (!text) {

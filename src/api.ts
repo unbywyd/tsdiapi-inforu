@@ -1,16 +1,16 @@
 import axios from "axios";
 import { PluginOptions } from "./index.js";
-import type { Logger } from "winston";
+import { AppContext } from "@tsdiapi/server";
 
 const endpoint = "https://uapi.inforu.co.il/SendMessageXml.ashx?InforuXML=";
 
 export class InforuProvider {
     private config: PluginOptions;
-    private logger: Logger;
+    private logger: AppContext['fastify']['log'];
 
-    init(config: PluginOptions, logger: Logger) {
+    init(config: PluginOptions, app: AppContext) {
         this.config = config;
-        this.logger = logger;
+        this.logger = app.fastify.log;
     }
 
     async send(to: string, text: string): Promise<void> {

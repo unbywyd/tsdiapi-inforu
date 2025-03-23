@@ -16,26 +16,23 @@ class App {
     }
     async onInit(ctx) {
         if (inforuProvider) {
-            ctx.logger.warn("⚠ Inforu plugin is already initialized. Skipping re-initialization.");
+            ctx.fastify.log.warn("⚠ Inforu plugin is already initialized. Skipping re-initialization.");
             return;
         }
         this.context = ctx;
-        const appConfig = this.context?.config?.appConfig || {};
-        const username = this.config.username || appConfig["INFORU_USERNAME"];
-        const password = this.config.password || appConfig["INFORU_PASSWORD"];
-        const senderName = this.config.senderName || appConfig["INFORU_SENDER_NAME"];
-        this.config.username = username;
-        this.config.password = password;
-        this.config.senderName = senderName;
+        const config = ctx.projectConfig;
+        this.config.username = config.get("INFORU_USERNAME", this.config.username);
+        this.config.password = config.get("INFORU_PASSWORD", this.config.password);
+        this.config.senderName = config.get("INFORU_SENDER_NAME", this.config.senderName);
         if (!this.config.username || !this.config.password || !this.config.senderName) {
-            ctx.logger.error('Inforu plugin not configured properly. Missing username, password or sender name');
+            ctx.fastify.log.error('Inforu plugin not configured properly. Missing username, password or sender name');
         }
-        this.provider.init(this.config, ctx.logger);
+        this.provider.init(this.config, ctx);
         inforuProvider = this.provider;
-        ctx.logger.info("✅ Inforu plugin initialized successfully.");
+        ctx.fastify.decorate('inforu', this.provider);
     }
 }
-export function getInforuProvider() {
+export function useInforuProvider() {
     if (!inforuProvider) {
         throw new Error("❌ Inforu plugin is not initialized. Use createPlugin() in your server context first.");
     }
